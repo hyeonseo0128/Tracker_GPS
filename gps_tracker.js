@@ -1,4 +1,4 @@
-const SerialPort = require("serialport");
+const { SerialPort } = require("serialport");
 const SerialPortParser = require("@serialport/parser-readline");
 const GPS = require("gps");
 const mqtt = require('mqtt');
@@ -40,7 +40,8 @@ mavData.hdg = 0;
 
 function gpsPortOpening() {
     if (gpsPort == null) {
-        gpsPort = new SerialPort(gpsPortNum, {
+        gpsPort = new SerialPort({
+            path: gpsPortNum,
             baudRate: parseInt(gpsBaudrate, 10),
         });
 
